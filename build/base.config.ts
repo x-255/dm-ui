@@ -26,13 +26,14 @@ export default defineConfig({
         const md = fs.readFileSync(path, 'utf-8')
         const { data } = matter(md)
         route.meta = Object.assign(route.meta || {}, { frontmatter: data })
+
         if (route.component.endsWith('README.md')) {
           const compRe = /\/src\/([a-z-]+)\/docs\/README\.md/
           const [_, name] = compRe.exec(route.component)
           route.name = name
           route.path = `/components/${name}`
         }
-        console.log(`route====`, route)
+
         return route
       },
     }),
@@ -42,7 +43,7 @@ export default defineConfig({
       deep: true,
       dts: true,
       resolvers: [ElementPlusResolver()],
-      include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
+      include: [/\.vue$/, /\.vue\?vue/, /\.vue\?raw/, /\.md$/],
     }),
   ],
   resolve: {

@@ -1,9 +1,9 @@
 <template>
   <div class="demo">
-    <dm-button></dm-button>
+    <dm-button>xxx</dm-button>
   </div>
 </template>
 
 <script setup lang="ts">
-  import { ref } from 'vue'
+import { ref } from 'vue'
 </script>

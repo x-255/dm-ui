@@ -1,16 +1,16 @@
 <template>
-  <div class="dm-button"></div>
+  <button class="dm-button"><slot></slot></button>
 </template>
 
 <script lang="ts">
-  export default { name: 'Button' }
+export default { name: 'Button' }
 </script>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+import { ref } from 'vue'
 </script>
 
 <style>
-  .dm-button {
-  }
+.dm-button {
+}
 </style>
