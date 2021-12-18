@@ -1,1 +1,0 @@
-import{a as t,c as a,f as s,b as n,o as r}from"./vendor.a63799a0.js";const c={class:"markdown-body"},m=n("h1",null,"\u8FD9\u662F\u4E00\u4E2A\u6309\u94AE\u7EC4\u4EF6",-1),f={setup(_,{expose:e}){return e({frontmatter:{}}),(p,l)=>{const o=t("Preview");return r(),a("div",c,[m,s(o,{compName:"button",docsName:"demo"})])}}};export{f as default};

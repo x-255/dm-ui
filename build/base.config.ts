@@ -1,13 +1,13 @@
-import { resolve } from 'path'
-import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
-import Markdown from 'vite-plugin-md'
-import VitePages from 'vite-plugin-pages'
-import Components from 'unplugin-vue-components/vite'
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import fs from 'fs-extra'
 import matter from 'gray-matter'
+import { resolve } from 'path'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import Components from 'unplugin-vue-components/vite'
+import { defineConfig } from 'vite'
+import Markdown from 'vite-plugin-md'
+import VitePages from 'vite-plugin-pages'
 
 const srcPath = resolve(__dirname, '../src')
 

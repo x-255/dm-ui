@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts">
-export default { name: 'Button' }
+export default { name: 'DmButton' }
 </script>
 
 <script lang="ts" setup>

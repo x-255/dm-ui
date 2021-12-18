@@ -1,3 +1,3 @@
-import { App, Plugin } from 'vue'
+import { Plugin } from 'vue'
 
 export type SFCWithInstall<T> = T & Plugin

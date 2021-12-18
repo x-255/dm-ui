@@ -7,8 +7,9 @@
   "scripts": {
     "dev": "vite --config ./build/base.config.ts",
     "build:lib": "vue-tsc --noEmit --skipLibCheck && rimraf lib && vite build --config ./build/lib.config.ts",
-    "build:doc": "vue-tsc --noEmit --skipLibCheck && rimraf docs && vite build --config ./build/docs.config.ts",
-    "gen": "node ./scripts/gen-new-component/index.js"
+    "build:docs": "vue-tsc --noEmit --skipLibCheck && rimraf docs && vite build --config ./build/docs.config.ts",
+    "gen": "node ./scripts/gen-new-component/index.js",
+    "preinstall": "npx -y only-allow pnpm"
   },
   "dependencies": {
     "@vitejs/plugin-vue-jsx": "^1.3.2",

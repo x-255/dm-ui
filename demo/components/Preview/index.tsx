@@ -1,17 +1,5 @@
-import {
-  Component,
-  computed,
-  defineAsyncComponent,
-  defineComponent,
-  h,
-  markRaw,
-  nextTick,
-  onMounted,
-  ref,
-  VNode,
-} from 'vue'
 import Prism from 'prismjs'
-
+import { Component, defineAsyncComponent, defineComponent, h, markRaw, ref } from 'vue'
 import './index.scss'
 import './prism.css'
 
@@ -28,22 +16,29 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const path = computed(() => `${props.compName}/docs/${props.docsName}`)
-
     const sourceCode = ref('')
     let comp = markRaw<Component>({})
 
     comp = defineAsyncComponent(
-      () => import(`../../../../src/${props.compName}/docs/${props.docsName}.vue`),
+      () => import(`../../../src/${props.compName}/docs/${props.docsName}.vue`),
     )
+    const getRaw = () => {
+      const path = `../../src/${props.compName}/docs/${props.docsName}.vue`
 
-    import(`../../../../src/${props.compName}/docs/${props.docsName}.vue?raw`)
-      .then((c) => {
-        sourceCode.value = c?.default ?? ''
-      })
-      .then(() => {
-        Prism.highlightAll()
-      })
+      if (import.meta.env.PROD) {
+        return fetch(path)
+          .then((res) => res.text())
+          .catch(() => '')
+      } else {
+        return import(`../${path}?raw`).then((c) => {
+          sourceCode.value = c?.default ?? ''
+        })
+      }
+    }
+
+    getRaw().then(() => {
+      Prism.highlightAll()
+    })
 
     const codeVisible = ref(false)
 

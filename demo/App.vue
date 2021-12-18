@@ -13,7 +13,7 @@
 
 <script setup lang="ts">
 import componentList from '@/list.json'
-import { reactive, readonly, ref } from 'vue'
+import { readonly } from 'vue'
 
 let uid = 1
 
