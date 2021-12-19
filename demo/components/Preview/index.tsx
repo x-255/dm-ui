@@ -23,14 +23,14 @@ export default defineComponent({
       () => import(`../../../src/${props.compName}/docs/${props.docsName}.vue`),
     )
     const getRaw = () => {
-      const path = `../../src/${props.compName}/docs/${props.docsName}.vue`
+      const path = `../../src/${props.compName}/docs/${props.docsName}`
 
       if (import.meta.env.PROD) {
-        return fetch(path)
+        return fetch(`${path}.vue`)
           .then((res) => res.text())
           .catch(() => '')
       } else {
-        return import(`../${path}?raw`).then((c) => {
+        return import(`../${path}.vue?raw`).then((c) => {
           sourceCode.value = c?.default ?? ''
         })
       }

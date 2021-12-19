@@ -10,12 +10,21 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "declaration": true,
-    "lib": ["esnext", "dom"],
+    "lib": [
+      "esnext",
+      "dom"
+    ],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": [
+        "src/*"
+      ]
     },
-    "types": ["vite-plugin-pages/client"]
+    "types": [
+      "vite-plugin-pages/client",
+      "jest",
+      "@vue/test-utils"
+    ]
   },
   "include": [
     "typings",

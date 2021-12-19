@@ -3,25 +3,30 @@ const handlebars = require('handlebars')
 const { resolve } = require('path')
 const { capitalize, kebabCase } = require('../utils')
 
-const getTplFilePath = (meta) => ({
+const getTplFilePath = ({ name }) => ({
   // docs 目录
   readme: {
     from: './.template/docs/README.md.tpl',
-    to: `../../src/${meta.name}/docs/README.md`,
+    to: `../../src/${name}/docs/README.md`,
   },
   demo: {
     from: './.template/docs/demo.vue.tpl',
-    to: `../../src/${meta.name}/docs/demo.vue`,
+    to: `../../src/${name}/docs/demo.vue`,
   },
   // src 目录
   vue: {
     from: './.template/src/index.vue.tpl',
-    to: `../../src/${meta.name}/src/index.vue`,
+    to: `../../src/${name}/src/index.vue`,
   },
   // 根目录
   install: {
     from: './.template/index.ts.tpl',
-    to: `../../src/${meta.name}/index.ts`,
+    to: `../../src/${name}/index.ts`,
+  },
+  // 测试 目录
+  test: {
+    from: './.template/tests/index.spec.ts.tpl',
+    to: `../../src/${name}/tests/${name}.spec.ts`,
   },
 })
 
@@ -31,7 +36,8 @@ const compFilesTplReplacer = (meta) => {
     const fileTpl = fs.readFileSync(resolve(__dirname, filePaths[key].from), 'utf-8')
     const _meta = { ...meta }
     _meta.className = kebabCase('dm-' + meta.name)
-    if (key === 'install' || key === 'vue') {
+    const capitalKeys = ['install', 'vue', 'test']
+    if (capitalKeys.includes(key)) {
       _meta.name = capitalize(meta.name)
     }
     const fileContent = handlebars.compile(fileTpl)(_meta)
