@@ -1,6 +1,6 @@
 node_modules
 docs
 lib
-scripts
 pnpm-lock.yaml
+components.d.ts
 !.*

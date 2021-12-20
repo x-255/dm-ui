@@ -1,5 +1,5 @@
 const inquirer = require('inquirer')
-const { camelCase, kebabCase } = require('../utils.js')
+const { camelCase } = require('../utils.js')
 
 module.exports = async () => {
   const meta = await inquirer.prompt([

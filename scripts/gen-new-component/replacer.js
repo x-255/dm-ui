@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const fs = require('fs-extra')
 const handlebars = require('handlebars')
 const { resolve } = require('path')
@@ -69,7 +70,7 @@ const listJsonTplReplacer = (meta) => {
 }
 
 // 更新 install.ts
-const installTsTplReplacer = (listFileContent) => {
+const installTsTplReplacer = (listFileContent, metaName) => {
   const installFileFrom = './.template/components.ts.tpl'
   const installFileTo = '../../src/components.ts' // 这里没有写错，别慌
   const installFileTpl = fs.readFileSync(
@@ -90,7 +91,11 @@ const installTsTplReplacer = (listFileContent) => {
     installFileContent,
 
     (err) => {
-      if (err) console.log(err)
+      if (err) {
+        console.log(err)
+        return
+      }
+      exec(`eslint src/${metaName} --ext .vue,.js,.ts,.jsx,.tsx --fix`)
     },
   )
 }
@@ -98,9 +103,6 @@ const installTsTplReplacer = (listFileContent) => {
 module.exports = (meta) => {
   compFilesTplReplacer(meta)
   const listFileContent = listJsonTplReplacer(meta)
-  installTsTplReplacer(listFileContent)
-  setTimeout(() => {
-    exec(`eslint src/${meta.name} --ext .vue,.js,.ts,.jsx,.tsx --fix`)
-  }, 1000)
+  installTsTplReplacer(listFileContent, meta.name)
   console.log(`组件新建完毕，请前往 src/${meta.name} 目录进行开发`)
 }
