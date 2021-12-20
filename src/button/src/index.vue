@@ -6,9 +6,7 @@
 export default { name: 'DmButton' }
 </script>
 
-<script lang="ts" setup>
-import { ref } from 'vue'
-</script>
+<script lang="ts" setup></script>
 
 <style>
 .dm-button {

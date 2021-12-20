@@ -1,6 +1,6 @@
-import dm from '@/index'
 import routes from 'pages-generated'
 import { ViteSSG } from 'vite-ssg'
+import dm from '@/index'
 import App from './App.vue'
 import Preview from './components/Preview'
 

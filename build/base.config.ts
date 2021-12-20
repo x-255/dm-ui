@@ -11,8 +11,6 @@ import VitePages from 'vite-plugin-pages'
 
 const srcPath = resolve(__dirname, '../src')
 
-const __DEV__ = process.env.NODE_ENV !== 'production'
-
 export default defineConfig({
   plugins: [
     vue({ include: [/\.vue$/, /\.md$/] }),
@@ -22,19 +20,21 @@ export default defineConfig({
       extensions: ['md'],
       pagesDir: [{ dir: resolve(__dirname, '../src'), baseRoute: 'components' }],
       extendRoute(route) {
-        const path = resolve(__dirname, '..', route.component.slice(1))
+        const _route = route
+        const path = resolve(__dirname, '..', _route.component.slice(1))
         const md = fs.readFileSync(path, 'utf-8')
         const { data } = matter(md)
-        route.meta = Object.assign(route.meta || {}, { frontmatter: data })
+        _route.meta = Object.assign(_route.meta || {}, { frontmatter: data })
 
-        if (route.component.endsWith('README.md')) {
+        if (_route.component.endsWith('README.md')) {
           const compRe = /\/src\/([a-z-]+)\/docs\/README\.md/
-          const [_, name] = compRe.exec(route.component)
-          route.name = name
-          route.path = `/components/${name}`
+          // eslint-disable-next-line no-unused-vars
+          const [_, name] = compRe.exec(_route.component)
+          _route.name = name
+          _route.path = `/components/${name}`
         }
 
-        return route
+        return _route
       },
     }),
     Components({

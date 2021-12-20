@@ -10,7 +10,7 @@ const camelCase = (middleStr) =>
   lowerFirst(words(middleStr).reduce((res, str) => res + capitalize(str), ''))
 
 const kebabCase = (middleStr) =>
-  trim(words(middleStr).reduce((res, str) => res + '-' + str.toLowerCase(), ''))
+  trim(words(middleStr).reduce((res, str) => `${res}-${str.toLowerCase()}`, ''))
 
 exports.words = words
 exports.trim = trim

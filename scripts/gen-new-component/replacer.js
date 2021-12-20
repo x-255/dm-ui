@@ -35,7 +35,7 @@ const compFilesTplReplacer = (meta) => {
   Object.keys(filePaths).forEach((key) => {
     const fileTpl = fs.readFileSync(resolve(__dirname, filePaths[key].from), 'utf-8')
     const _meta = { ...meta }
-    _meta.className = kebabCase('dm-' + meta.name)
+    _meta.className = kebabCase(`dm-${meta.name}`)
     const capitalKeys = ['install', 'vue', 'test']
     if (capitalKeys.includes(key)) {
       _meta.name = capitalize(meta.name)

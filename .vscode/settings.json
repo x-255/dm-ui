@@ -3,5 +3,8 @@
   "emmet.includeLanguages": {
     "javascriptreact": "html",
     "typescriptreact": "html"
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
   }
 }

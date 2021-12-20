@@ -12,8 +12,8 @@
 </template>
 
 <script setup lang="ts">
-import componentList from '@/list.json'
 import { readonly } from 'vue'
+import componentList from '@/list.json'
 
 let uid = 1
 

@@ -29,11 +29,10 @@ export default defineComponent({
         return fetch(`${path}.vue`)
           .then((res) => res.text())
           .catch(() => '')
-      } else {
-        return import(`../${path}.vue?raw`).then((c) => {
-          sourceCode.value = c?.default ?? ''
-        })
       }
+      return import(`../${path}.vue?raw`).then((c) => {
+        sourceCode.value = c?.default ?? ''
+      })
     }
 
     getRaw().then(() => {
