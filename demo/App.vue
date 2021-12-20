@@ -1,11 +1,15 @@
 <template>
-  <div class="dm-doc">
-    <aside>
-      <div v-for="link in data.links" :key="link.id" class="link-row">
-        <router-link :to="link.path">{{ link.name }}</router-link>
+  <div class="flex min-h-screen">
+    <aside class="w-200px p-15px border divide-x-reverse">
+      <div v-for="link in data.links" :key="link.id" class="text-center">
+        <router-link
+          :to="link.path"
+          class="text-gray-900 hover:text-blue-600"
+          >{{ link.name }}</router-link
+        >
       </div>
     </aside>
-    <main>
+    <main class="w-full flex-1 p-15px">
       <router-view></router-view>
     </main>
   </div>
@@ -32,23 +36,7 @@ body {
   margin: 0;
   padding: 0;
 }
-.dm-doc {
-  display: flex;
-  min-height: 100vh;
-}
-
-aside {
-  width: 200px;
-  padding: 15px;
-  border-right: 1px solid #ccc;
-}
-main {
-  width: 100%;
-  flex: 1;
-  padding: 15px;
-}
-
-.link-row {
-  text-align: center;
+.router-link-active {
+  @apply text-blue-600;
 }
 </style>

@@ -1,1 +1,0 @@
-import{d as t,a as o,o as s,c as n,f as a,w as c,g as _}from"./vendor.a0c4cb41.js";const d={class:"demo"},r=_("xxx"),i=t({setup(m){return(l,p)=>{const e=o("dm-button");return s(),n("div",d,[a(e,null,{default:c(()=>[r]),_:1})])}}});export{i as default};

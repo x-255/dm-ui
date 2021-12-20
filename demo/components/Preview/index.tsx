@@ -1,41 +1,17 @@
 import Prism from 'prismjs'
-import { Component, defineAsyncComponent, defineComponent, h, markRaw, ref } from 'vue'
-import './index.scss'
+import { defineComponent, h, onMounted, ref } from 'vue'
 import './prism.css'
 
 export default defineComponent({
   name: 'Preview',
   props: {
-    compName: {
-      type: String,
-      required: true,
-    },
-    docsName: {
+    raw: {
       type: String,
       required: true,
     },
   },
-  setup(props) {
-    const sourceCode = ref('')
-    let comp = markRaw<Component>({})
-
-    comp = defineAsyncComponent(
-      () => import(`../../../src/${props.compName}/docs/${props.docsName}.vue`),
-    )
-    const getRaw = () => {
-      const path = `../../src/${props.compName}/docs/${props.docsName}`
-
-      if (import.meta.env.PROD) {
-        return fetch(`${path}.vue`)
-          .then((res) => res.text())
-          .catch(() => '')
-      }
-      return import(`../${path}.vue?raw`).then((c) => {
-        sourceCode.value = c?.default ?? ''
-      })
-    }
-
-    getRaw().then(() => {
+  setup(props, { slots }) {
+    onMounted(() => {
       Prism.highlightAll()
     })
 
@@ -46,16 +22,22 @@ export default defineComponent({
     }
 
     return () => (
-      <div class="preview">
-        <section>{h(comp)}</section>
+      <div class="border rounded border-dashed border-gray-400">
+        <section class="m-15px">{h(slots.default ?? {})}</section>
 
-        <div class="source-code" style={{ display: codeVisible.value ? 'block' : 'none' }}>
-          <pre class="language-html">
-            <code class="language-html">{sourceCode.value}</code>
+        <div
+          class="max-h-500px"
+          style={{ display: codeVisible.value ? 'block' : 'none' }}
+        >
+          <pre class="py-15px">
+            <code class="language-html">{props.raw}</code>
           </pre>
         </div>
 
-        <div class="preview-bottom" onClick={showSourceCode}>
+        <div
+          class="h-40px leading-40px text-center cursor-pointer border-t border-dashed border-gray-400"
+          onClick={showSourceCode}
+        >
           查看代码
         </div>
       </div>

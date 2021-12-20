@@ -8,6 +8,7 @@ import Components from 'unplugin-vue-components/vite'
 import { defineConfig } from 'vite'
 import Markdown from 'vite-plugin-md'
 import VitePages from 'vite-plugin-pages'
+import WindiCSS from 'vite-plugin-windicss'
 
 const srcPath = resolve(__dirname, '../src')
 
@@ -18,7 +19,9 @@ export default defineConfig({
     Markdown(),
     VitePages({
       extensions: ['md'],
-      pagesDir: [{ dir: resolve(__dirname, '../src'), baseRoute: 'components' }],
+      pagesDir: [
+        { dir: resolve(__dirname, '../src'), baseRoute: 'components' },
+      ],
       extendRoute(route) {
         const _route = route
         const path = resolve(__dirname, '..', _route.component.slice(1))
@@ -44,6 +47,12 @@ export default defineConfig({
       dts: true,
       resolvers: [ElementPlusResolver()],
       include: [/\.vue$/, /\.vue\?vue/, /\.vue\?raw/, /\.md$/],
+    }),
+    WindiCSS({
+      scan: {
+        dirs: ['demo'],
+        fileExtensions: ['vue', 'tsx', 'ts', 'md'],
+      },
     }),
   ],
   resolve: {

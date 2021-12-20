@@ -3,12 +3,12 @@
 </template>
 
 <script lang="ts">
-  export default { name: 'Dm{{ name }}' }
+export default { name: 'Dm{{ name }}' }
 </script>
 
 <script lang="ts" setup></script>
 
 <style>
-  .{{ className }} {
-  }
+.{{ className }} {
+}
 </style>

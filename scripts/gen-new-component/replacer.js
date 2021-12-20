@@ -1,6 +1,7 @@
 const fs = require('fs-extra')
 const handlebars = require('handlebars')
 const { resolve } = require('path')
+const { exec } = require('child_process')
 const { capitalize, kebabCase } = require('../utils')
 
 const getTplFilePath = ({ name }) => ({
@@ -33,7 +34,10 @@ const getTplFilePath = ({ name }) => ({
 const compFilesTplReplacer = (meta) => {
   const filePaths = getTplFilePath(meta)
   Object.keys(filePaths).forEach((key) => {
-    const fileTpl = fs.readFileSync(resolve(__dirname, filePaths[key].from), 'utf-8')
+    const fileTpl = fs.readFileSync(
+      resolve(__dirname, filePaths[key].from),
+      'utf-8',
+    )
     const _meta = { ...meta }
     _meta.className = kebabCase(`dm-${meta.name}`)
     const capitalKeys = ['install', 'vue', 'test']
@@ -54,9 +58,13 @@ const listJsonTplReplacer = (meta) => {
   const listFileContent = JSON.parse(listFileTpl)
   listFileContent.push(meta)
   const newListFileContentFile = JSON.stringify(listFileContent, null, 2)
-  fs.writeFile(resolve(__dirname, listFilePath), newListFileContentFile, (err) => {
-    if (err) console.log(err)
-  })
+  fs.writeFile(
+    resolve(__dirname, listFilePath),
+    newListFileContentFile,
+    (err) => {
+      if (err) console.log(err)
+    },
+  )
   return listFileContent
 }
 
@@ -64,20 +72,35 @@ const listJsonTplReplacer = (meta) => {
 const installTsTplReplacer = (listFileContent) => {
   const installFileFrom = './.template/components.ts.tpl'
   const installFileTo = '../../src/components.ts' // 这里没有写错，别慌
-  const installFileTpl = fs.readFileSync(resolve(__dirname, installFileFrom), 'utf-8')
+  const installFileTpl = fs.readFileSync(
+    resolve(__dirname, installFileFrom),
+    'utf-8',
+  )
   const installMeta = {
-    exportPlugins: listFileContent.map(({ name }) => `export * from './${name}'`).join('\n'),
+    exportPlugins: listFileContent
+      .map(({ name }) => `export * from './${name}'`)
+      .join('\n'),
   }
-  const installFileContent = handlebars.compile(installFileTpl, { noEscape: true })(installMeta)
-  fs.outputFile(resolve(__dirname, installFileTo), installFileContent, (err) => {
-    if (err) console.log(err)
-  })
+  const installFileContent = handlebars.compile(installFileTpl, {
+    noEscape: true,
+  })(installMeta)
+
+  fs.outputFile(
+    resolve(__dirname, installFileTo),
+    installFileContent,
+
+    (err) => {
+      if (err) console.log(err)
+    },
+  )
 }
 
 module.exports = (meta) => {
   compFilesTplReplacer(meta)
   const listFileContent = listJsonTplReplacer(meta)
   installTsTplReplacer(listFileContent)
-
+  setTimeout(() => {
+    exec(`eslint src/${meta.name} --ext .vue,.js,.ts,.jsx,.tsx --fix`)
+  }, 1000)
   console.log(`组件新建完毕，请前往 src/${meta.name} 目录进行开发`)
 }
