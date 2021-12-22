@@ -45,7 +45,6 @@ specifiers:
   vue-jest: ^5.0.0-alpha.10
   vue-router: '4'
   vue-tsc: ^0.29.8
-  windicss: ^3.4.0
 
 dependencies:
   '@vitejs/plugin-vue-jsx': registry.npmmirror.com/@vitejs/plugin-vue-jsx/1.3.2
@@ -55,7 +54,6 @@ dependencies:
   vite-plugin-windicss: registry.npmmirror.com/vite-plugin-windicss/1.5.4_vite@2.7.2
   vue: registry.npmmirror.com/vue/3.2.26
   vue-router: registry.npmmirror.com/vue-router/4.0.12_vue@3.2.26
-  windicss: registry.npmmirror.com/windicss/3.4.0
 
 devDependencies:
   '@babel/core': registry.npmmirror.com/@babel/core/7.16.5

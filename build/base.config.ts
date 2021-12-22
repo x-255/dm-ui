@@ -4,7 +4,6 @@ import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import Markdown from 'vite-plugin-md'
 import VitePages from 'vite-plugin-pages'
-import WindiCSS from 'vite-plugin-windicss'
 
 const srcPath = resolve(__dirname, '../src')
 
@@ -29,12 +28,6 @@ export default defineConfig({
         }
 
         return _route
-      },
-    }),
-    WindiCSS({
-      scan: {
-        dirs: ['demo'],
-        fileExtensions: ['vue', 'tsx', 'ts', 'md'],
       },
     }),
   ],
