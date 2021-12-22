@@ -1,7 +1,7 @@
-export * from './button'
+export * from './example'
 
 declare module 'vue' {
   export interface GlobalComponents {
-    DmButton: typeof import('dm-ui')['DmButton']
+    DmExample: typeof import('dm-ui')['DmExample']
   }
 }

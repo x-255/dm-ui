@@ -1,7 +1,5 @@
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
-import fs from 'fs-extra'
-import matter from 'gray-matter'
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import Markdown from 'vite-plugin-md'
@@ -22,11 +20,6 @@ export default defineConfig({
       ],
       extendRoute(route) {
         const _route = route
-        const path = resolve(__dirname, '..', _route.component.slice(1))
-        const md = fs.readFileSync(path, 'utf-8')
-        const { data } = matter(md)
-        _route.meta = Object.assign(_route.meta || {}, { frontmatter: data })
-
         if (_route.component.endsWith('README.md')) {
           const compRe = /\/src\/([a-z-]+)\/docs\/README\.md/
           // eslint-disable-next-line no-unused-vars

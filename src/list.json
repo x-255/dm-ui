@@ -1,7 +1,7 @@
 [
   {
-    "name": "button",
-    "zhName": "按钮",
-    "desc": "这是一个按钮组件"
+    "name": "example",
+    "zhName": "栗子",
+    "desc": "这是一个栗子组件"
   }
 ]

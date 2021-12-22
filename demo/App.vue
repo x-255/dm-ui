@@ -1,7 +1,7 @@
 <template>
   <div class="flex min-h-screen">
     <aside class="w-200px p-15px border divide-x-reverse">
-      <div v-for="link in data.links" :key="link.id" class="text-center">
+      <div v-for="link in navs" :key="link.id" class="text-center">
         <router-link
           :to="link.path"
           class="text-gray-900 hover:text-blue-600"
@@ -21,13 +21,13 @@ import componentList from '@/list.json'
 
 let uid = 1
 
-const data = readonly({
-  links: componentList.map((item) => ({
+const navs = readonly(
+  componentList.map((item) => ({
     id: uid++,
     path: `/components/${item.name}`,
     name: item.zhName,
   })),
-})
+)
 </script>
 
 <style scoped lang="scss">
