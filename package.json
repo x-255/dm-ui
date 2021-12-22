@@ -1,14 +1,20 @@
 {
   "name": "dm-ui",
   "version": "0.0.0",
-  "main": "lib/index.umd.js",
-  "module": "lib/index.es.js",
-  "typings": "lib/src/index.d.ts",
+  "main": "./lib/index.umd.js",
+  "module": "./lib/index.es.js",
+  "typings": "./lib/src/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./lib/index.es.js",
+      "require": "./lib/src/index.d.ts"
+    }
+  },
   "scripts": {
     "dev": "vite --config ./build/base.config.ts",
     "build:lib": "vue-tsc --noEmit --skipLibCheck && rimraf lib && vite build --config ./build/lib.config.ts",
     "build:docs": "vue-tsc --noEmit --skipLibCheck && rimraf docs && vite build --config ./build/docs.config.ts",
-    "gen": "node ./scripts/gen-new-component/index.js",
+    "gen": "node ./scripts/gen/index.js",
     "preinstall": "npx -y only-allow pnpm",
     "test": "jest",
     "lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx --max-warnings 0",
@@ -43,6 +49,7 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-markdown": "^2.2.1",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^8.2.0",
     "fs-extra": "^10.0.0",

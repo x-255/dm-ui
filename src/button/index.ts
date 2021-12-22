@@ -8,9 +8,3 @@ DmButton.install = (app) => {
 }
 
 export { DmButton }
-
-declare module 'vue' {
-  export interface GlobalComponents {
-    DmButton: typeof import('./src/index.vue').default
-  }
-}

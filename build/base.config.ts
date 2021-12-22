@@ -3,8 +3,6 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import fs from 'fs-extra'
 import matter from 'gray-matter'
 import { resolve } from 'path'
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
-import Components from 'unplugin-vue-components/vite'
 import { defineConfig } from 'vite'
 import Markdown from 'vite-plugin-md'
 import VitePages from 'vite-plugin-pages'
@@ -40,14 +38,6 @@ export default defineConfig({
         return _route
       },
     }),
-    Components({
-      dirs: [srcPath],
-      extensions: ['vue', 'md'],
-      deep: true,
-      dts: true,
-      resolvers: [ElementPlusResolver()],
-      include: [/\.vue$/, /\.vue\?vue/, /\.vue\?raw/, /\.md$/],
-    }),
     WindiCSS({
       scan: {
         dirs: ['demo'],
@@ -58,6 +48,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': srcPath,
+      'dm-ui': srcPath,
     },
   },
   server: {

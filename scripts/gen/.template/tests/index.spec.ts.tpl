@@ -3,7 +3,7 @@ import {{ name }} from '../src/index.vue'
 
 describe('{{ zhName }}测试', () => {
   test('{{ name }} test', () => {
-    const wrapper = mount({{ name }}, {})
-    expect(wrapper).toBeTruthy()
+    const wrapper = mount({{ name }})
+    expect(wrapper)
   })
 })

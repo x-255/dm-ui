@@ -6,6 +6,7 @@
   "extends": [
     "plugin:vue/vue3-essential",
     "plugin:vue/vue3-recommended",
+    "plugin:markdown/recommended",
     "airbnb-base",
     "plugin:prettier/recommended"
   ],
@@ -14,10 +15,7 @@
     "parser": "@typescript-eslint/parser",
     "sourceType": "module"
   },
-  "plugins": [
-    "vue",
-    "@typescript-eslint"
-  ],
+  "plugins": ["vue", "@typescript-eslint"],
   "rules": {
     "import/no-unresolved": "off",
     "import/extensions": "off",
@@ -28,14 +26,12 @@
     "import/prefer-default-export": "off",
     "no-undef": "off",
     "no-multi-assign": "off",
+    "consistent-return": "off",
     "no-plusplus": "off"
   },
   "overrides": [
     {
-      "files": [
-        "**/*.spec.ts",
-        "**/*.spec.tsx"
-      ],
+      "files": ["**/*.spec.ts", "**/*.spec.tsx"],
       "env": {
         "jest": true
       }

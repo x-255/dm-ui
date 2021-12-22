@@ -1,5 +1,5 @@
 import Prism from 'prismjs'
-import { defineComponent, h, onMounted, ref } from 'vue'
+import { defineComponent, onMounted, ref } from 'vue'
 import './prism.css'
 
 export default defineComponent({
@@ -23,7 +23,7 @@ export default defineComponent({
 
     return () => (
       <div class="border rounded border-dashed border-gray-400">
-        <section class="m-15px">{h(slots.default ?? {})}</section>
+        <section class="m-15px">{slots.default?.()}</section>
 
         <div
           class="max-h-500px"

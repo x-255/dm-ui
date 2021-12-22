@@ -8,9 +8,3 @@ Dm{{ name }}.install = (app) => {
 }
 
 export { Dm{{ name }} }
-
-declare module 'vue' {
-  export interface GlobalComponents {
-    Dm{{ name }}: typeof import('./src/index.vue').default
-  }
-}

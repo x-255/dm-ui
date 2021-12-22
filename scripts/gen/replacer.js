@@ -1,8 +1,7 @@
-/* eslint-disable no-console */
 const fs = require('fs-extra')
 const handlebars = require('handlebars')
 const { resolve } = require('path')
-const { exec } = require('child_process')
+const { execSync } = require('child_process')
 const { capitalize, kebabCase } = require('../utils')
 
 const getTplFilePath = ({ name }) => ({
@@ -32,9 +31,9 @@ const getTplFilePath = ({ name }) => ({
   },
 })
 
-const compFilesTplReplacer = (meta) => {
+const compFilesTplReplacer = async (meta) => {
   const filePaths = getTplFilePath(meta)
-  Object.keys(filePaths).forEach((key) => {
+  const replacers = Object.keys(filePaths).map(async (key) => {
     const fileTpl = fs.readFileSync(
       resolve(__dirname, filePaths[key].from),
       'utf-8',
@@ -46,63 +45,62 @@ const compFilesTplReplacer = (meta) => {
       _meta.name = capitalize(meta.name)
     }
     const fileContent = handlebars.compile(fileTpl)(_meta)
-    fs.outputFile(resolve(__dirname, filePaths[key].to), fileContent, (err) => {
-      if (err) console.log(err)
-    })
+    await fs.outputFile(resolve(__dirname, filePaths[key].to), fileContent)
   })
+  await Promise.all(replacers)
 }
 
-// 读取 src/list.json 并更新
-const listJsonTplReplacer = (meta) => {
+// 更新 src/list.json
+const listJsonTplReplacer = async (meta) => {
   const listFilePath = '../../src/list.json'
   const listFileTpl = fs.readFileSync(resolve(__dirname, listFilePath), 'utf-8')
   const listFileContent = JSON.parse(listFileTpl)
+
+  if (listFileContent.find((val) => val.name === meta.name)) {
+    throw Error(`${meta.name}组件已存在！`)
+  }
+
   listFileContent.push(meta)
   const newListFileContentFile = JSON.stringify(listFileContent, null, 2)
-  fs.writeFile(
-    resolve(__dirname, listFilePath),
-    newListFileContentFile,
-    (err) => {
-      if (err) console.log(err)
-    },
-  )
+  await fs.writeFile(resolve(__dirname, listFilePath), newListFileContentFile)
   return listFileContent
 }
 
-// 更新 install.ts
-const installTsTplReplacer = (listFileContent, metaName) => {
-  const installFileFrom = './.template/components.ts.tpl'
-  const installFileTo = '../../src/components.ts' // 这里没有写错，别慌
-  const installFileTpl = fs.readFileSync(
-    resolve(__dirname, installFileFrom),
-    'utf-8',
-  )
+// 更新 src/components.ts
+const installTsTplReplacer = async (listFileContent) => {
+  const from = './.template/components.ts.tpl'
+  const to = '../../src/components.ts'
+  const tpl = fs.readFileSync(resolve(__dirname, from), 'utf-8')
   const installMeta = {
     exportPlugins: listFileContent
       .map(({ name }) => `export * from './${name}'`)
       .join('\n'),
+    declarePlugins: listFileContent
+      .map(({ name }) => {
+        const _name = `Dm${capitalize(name)}`
+        return `${_name}: typeof import('dm-ui')['${_name}']`
+      })
+      .join('\n\t\t'),
   }
-  const installFileContent = handlebars.compile(installFileTpl, {
+  const installFileContent = handlebars.compile(tpl, {
     noEscape: true,
   })(installMeta)
 
-  fs.outputFile(
-    resolve(__dirname, installFileTo),
-    installFileContent,
+  await fs.outputFile(resolve(__dirname, to), installFileContent)
+}
 
-    (err) => {
-      if (err) {
-        console.log(err)
-        return
-      }
-      exec(`eslint src/${metaName} --ext .vue,.js,.ts,.jsx,.tsx --fix`)
-    },
+// 使新建组件涉及到的文件的符合eslint规则
+const fixFiles = (name) => {
+  execSync(
+    `eslint src/${name} src/components.ts --ext .vue,.js,.ts,.jsx,.tsx --fix`,
   )
 }
 
-module.exports = (meta) => {
-  compFilesTplReplacer(meta)
-  const listFileContent = listJsonTplReplacer(meta)
-  installTsTplReplacer(listFileContent, meta.name)
+module.exports = async (meta) => {
+  await compFilesTplReplacer(meta)
+  const listFileContent = await listJsonTplReplacer(meta)
+  await installTsTplReplacer(listFileContent)
+  fixFiles(meta.name)
+  // eslint-disable-next-line no-console
   console.log(`组件新建完毕，请前往 src/${meta.name} 目录进行开发`)
 }
