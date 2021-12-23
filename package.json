@@ -4,12 +4,6 @@
   "main": "./lib/index.umd.js",
   "module": "./lib/index.es.js",
   "typings": "./lib/src/index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./lib/index.es.js",
-      "require": "./lib/src/index.d.ts"
-    }
-  },
   "scripts": {
     "preinstall": "npx -y only-allow pnpm",
     "dev": "vite",

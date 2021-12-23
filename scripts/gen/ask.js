@@ -1,5 +1,7 @@
 const inquirer = require('inquirer')
-const { camelCase } = require('../utils.js')
+const { camelCase, kebabCase, upperFirst } = require('../utils.js')
+
+const PREFIX_NAME = 'dm-'
 
 module.exports = async () => {
   const meta = await inquirer.prompt([
@@ -23,8 +25,10 @@ module.exports = async () => {
     },
   ])
 
-  let { name } = meta
-  meta.name = name = camelCase(name)
+  const { name } = meta
+  const dirname = kebabCase(name)
+  const className = PREFIX_NAME + dirname
+  meta.name = upperFirst(camelCase(className))
 
-  return meta
+  return { ...meta, dirname, className }
 }

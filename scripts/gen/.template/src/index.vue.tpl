@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts">
-export default { name: 'Dm{{ name }}' }
+export default { name: '{{ name }}' }
 </script>
 
 <script lang="ts" setup></script>

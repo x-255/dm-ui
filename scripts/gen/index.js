@@ -1,9 +1,9 @@
 const ask = require('./ask')
 const replacer = require('./replacer')
 
-async function run() {
+async function gen() {
   const meta = await ask()
   replacer(meta)
 }
 
-run()
+gen()

@@ -1,16 +1,14 @@
-# dm-ui
+# 一个组件库 demo
 
-## 一个组件库 demo
-
-### 推荐 IDE 设置
+## 推荐 IDE 设置
 
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
 
-### VSCode 推荐插件
+## VSCode 推荐插件
 
 [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) + [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 
-### scripts
+## scripts
 
 ```sh
 pnpm run dev # 启动开发环境
@@ -23,10 +21,10 @@ pnpm run lint # 运行 ESLint 校验
 pnpm run lint:fix # 指示 ESLint 试图修复尽可能多的问题
 ```
 
-### 整体目录结构
+## 整体目录结构
 
 ```sh
-dm-ui
+ .
  ├── build # vite打包配置
  │   ├── docs.config.ts # 文档模式
  │   └── lib.config.ts # 组件库模式
@@ -54,7 +52,7 @@ dm-ui
  └── vite.config.ts # vite基础配置
 ```
 
-### 单个组件目录结构
+## 单个组件目录结构
 
 ```sh
 componentName

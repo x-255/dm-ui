@@ -1,10 +1,10 @@
 import { registerComponent, SFCWithInstall } from '../_utils'
-import {{ name }} from './src/index.vue'
+import _{{ name }} from './src/index.vue'
 
-const Dm{{ name }} = {{ name }} as SFCWithInstall<typeof {{ name }}>
+const {{ name }} = _{{ name }} as SFCWithInstall<typeof _{{ name }}>
 
-Dm{{ name }}.install = (app) => {
-  registerComponent(app, Dm{{ name }})
+{{ name }}.install = (app) => {
+  registerComponent(app, {{ name }})
 }
 
-export { Dm{{ name }} }
+export { {{ name }} }

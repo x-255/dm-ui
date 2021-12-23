@@ -1,5 +1,5 @@
 <template>
-  <div class="dm-doc">
+  <div class="doc">
     <aside>
       <router-link
         v-for="nav in navs"
@@ -24,14 +24,14 @@ let uid = 1
 const navs = readonly(
   componentList.map((item) => ({
     id: uid++,
-    path: `/components/${item.name}`,
+    path: `/components/${item.dirname}`,
     name: item.zhName,
   })),
 )
 </script>
 
 <style scoped lang="scss">
-.dm-doc {
+.doc {
   display: flex;
   min-height: 100vh;
 }
