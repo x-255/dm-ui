@@ -5,7 +5,8 @@
   "module": "./lib/index.es.js",
   "typings": "./lib/src/index.d.ts",
   "scripts": {
-    "preinstall": "npx -y only-allow pnpm",
+    "preinstall": "npx only-allow pnpm -y",
+    "prepare": "husky install",
     "dev": "vite",
     "build:lib": "vue-tsc --noEmit --skipLibCheck && rimraf lib && vite build --config ./build/lib.config.ts",
     "build:docs": "vue-tsc --noEmit --skipLibCheck && rimraf docs && vite build --config ./build/docs.config.ts",

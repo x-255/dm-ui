@@ -8,7 +8,7 @@ const lowerFirst = (middleStr) =>
 const upperFirst = (middleStr) =>
   middleStr[0].toUpperCase() + middleStr.slice(1)
 
-/**首字母大写其他小写 */
+/** 首字母大写其他小写 */
 const capitalize = (middleStr) =>
   middleStr[0].toUpperCase() + middleStr.slice(1).toLowerCase()
 
@@ -16,7 +16,7 @@ const capitalize = (middleStr) =>
 const camelCase = (middleStr) =>
   lowerFirst(words(middleStr).reduce((res, str) => res + capitalize(str), ''))
 
-/**转短横线 */
+/** 转短横线 */
 const kebabCase = (middleStr) =>
   trim(words(middleStr).reduce((res, str) => `${res}-${str.toLowerCase()}`, ''))
 
