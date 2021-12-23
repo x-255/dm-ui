@@ -32,7 +32,6 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': srcPath,
-      'dm-ui': srcPath,
     },
   },
   server: {

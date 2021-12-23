@@ -1,9 +1,13 @@
 <template>
   <div class="dm-doc">
     <aside>
-      <div v-for="nav in navs" :key="nav.id" class="link-row">
-        <router-link :to="nav.path">{{ nav.name }}</router-link>
-      </div>
+      <router-link
+        v-for="nav in navs"
+        :key="nav.id"
+        class="link-row"
+        :to="nav.path"
+        >{{ nav.name }}</router-link
+      >
     </aside>
     <main>
       <router-view></router-view>
@@ -27,11 +31,6 @@ const navs = readonly(
 </script>
 
 <style scoped lang="scss">
-html,
-body {
-  margin: 0;
-  padding: 0;
-}
 .dm-doc {
   display: flex;
   min-height: 100vh;
@@ -39,16 +38,39 @@ body {
 
 aside {
   width: 200px;
-  padding: 15px;
+  height: 100vh;
   border-right: 1px solid #ccc;
+  padding: 15px;
+  overflow-y: auto;
+  box-sizing: border-box;
 }
 main {
   width: 100%;
   flex: 1;
   padding: 15px;
+  height: 100vh;
+  overflow-y: auto;
+  box-sizing: border-box;
 }
 
 .link-row {
-  text-align: center;
+  display: block;
+  padding: 0.625rem 2rem 0.625rem 1.5rem;
+  line-height: 1.5;
+  font-size: 0.9rem;
+  margin: 0 8px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #606266;
+
+  &:hover {
+    color: #409eff;
+  }
+
+  &.router-link-exact-active {
+    font-weight: 600;
+    color: #409eff;
+    background-color: #ecf5ff;
+  }
 }
 </style>

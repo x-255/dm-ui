@@ -1,5 +1,7 @@
 import Prism from 'prismjs'
 import { defineComponent, onMounted, ref } from 'vue'
+import { UnfoldMoreFilled } from '@vicons/material'
+import { Icon } from '@vicons/utils'
 import './index.scss'
 import './prism.css'
 
@@ -24,6 +26,13 @@ export default defineComponent({
 
     return () => (
       <div class="preview">
+        <div class="handlers">
+          <div class="handles__item" onClick={showSourceCode}>
+            <Icon size="16">
+              <UnfoldMoreFilled />
+            </Icon>
+          </div>
+        </div>
         <section>{slots.default?.()}</section>
 
         <div
@@ -33,10 +42,6 @@ export default defineComponent({
           <pre class="language-html">
             <code class="language-html">{props.raw}</code>
           </pre>
-        </div>
-
-        <div class="preview-bottom" onClick={showSourceCode}>
-          查看代码
         </div>
       </div>
     )

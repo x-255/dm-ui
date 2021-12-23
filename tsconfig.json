@@ -14,8 +14,7 @@
     "lib": ["esnext", "dom"],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
-      "dm-ui": ["src"]
+      "@/*": ["src/*"]
     },
     "types": ["vite-plugin-pages/client", "jest", "@vue/test-utils"]
   },

@@ -78,7 +78,7 @@ const installTsTplReplacer = async (listFileContent) => {
     declarePlugins: listFileContent
       .map(({ name }) => {
         const _name = `Dm${capitalize(name)}`
-        return `${_name}: typeof import('dm-ui')['${_name}']`
+        return `${_name}: typeof import('@/components')['${_name}']`
       })
       .join('\n\t\t'),
   }
