@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite'
-import baseConfig from './base.config'
+import baseConfig from '../vite.config'
 
 export default defineConfig({
   ...baseConfig,

@@ -5,7 +5,7 @@ import { defineConfig } from 'vite'
 import Markdown from 'vite-plugin-md'
 import VitePages from 'vite-plugin-pages'
 
-const srcPath = resolve(__dirname, '../src')
+const srcPath = resolve(__dirname, './src')
 
 export default defineConfig({
   plugins: [
@@ -14,9 +14,7 @@ export default defineConfig({
     Markdown(),
     VitePages({
       extensions: ['md'],
-      pagesDir: [
-        { dir: resolve(__dirname, '../src'), baseRoute: 'components' },
-      ],
+      pagesDir: [{ dir: resolve(__dirname, './src'), baseRoute: 'components' }],
       extendRoute(route) {
         const _route = route
         if (_route.component.endsWith('README.md')) {
