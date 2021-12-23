@@ -3,6 +3,6 @@ import demo from './demo.vue'
 import demoRaw from './demo.vue?raw'
 </script>
 
-# 这是一个{{ desc }}组件
+# {{ desc }}
 
 <Preview :raw="demoRaw"><demo /></Preview>
