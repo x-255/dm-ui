@@ -1,8 +1,7 @@
 <template>
-<div class="demo">
-  <{{ className }}></{{ className }}>
-</div>
+  <div class="demo">
+    <{{ className }}></{{ className }}>
+  </div>
 </template>
 
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
