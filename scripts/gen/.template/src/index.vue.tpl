@@ -8,7 +8,7 @@
 export default { name: '{{ name }}' }
 </script>
 
-<style>
+<style lang="scss">
 .{{ className }} {
 }
 </style>
