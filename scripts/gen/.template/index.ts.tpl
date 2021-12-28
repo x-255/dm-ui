@@ -8,3 +8,4 @@ const {{ name }} = _{{ name }} as SFCWithInstall<typeof _{{ name }}>
 }
 
 export { {{ name }} }
+export * from './src/index.vue'

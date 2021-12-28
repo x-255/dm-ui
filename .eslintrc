@@ -21,16 +21,19 @@
     "import/extensions": "off",
     "import/no-absolute-path": "off",
     "import/no-extraneous-dependencies": "off",
-    "no-underscore-dangle": "off",
-    "vue/multi-word-component-names": "off",
     "import/prefer-default-export": "off",
+    "consistent-return": "off",
+    "@typescript-eslint/no-unused-vars": "error",
+    "vue/multi-word-component-names": "off",
+    "vue/require-default-prop": "off",
+    "no-underscore-dangle": "off",
     "no-undef": "off",
     "no-multi-assign": "off",
-    "consistent-return": "off",
     "no-param-reassign": "off",
     "no-sequences": "off",
     "no-return-assign": "off",
-    "no-plusplus": "off"
+    "no-plusplus": "off",
+    "no-unused-vars": "off"
   },
   "overrides": [
     {
