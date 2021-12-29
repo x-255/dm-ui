@@ -11,8 +11,8 @@ const getTplFilePath = ({ dirname }) => ({
     to: `../../src/${dirname}/docs/README.md`,
   },
   demo: {
-    from: './.template/docs/demo.vue.tpl',
-    to: `../../src/${dirname}/docs/demo.vue`,
+    from: './.template/docs/docs-demo.vue.tpl',
+    to: `../../src/${dirname}/docs/docs-demo.vue`,
   },
   // src 目录
   vue: {
@@ -69,12 +69,6 @@ const installTsTplReplacer = async (listFileContent) => {
     exportPlugins: listFileContent
       .map(({ dirname }) => `export * from './${dirname}'`)
       .join('\n'),
-    declarePlugins: listFileContent
-      .map(
-        ({ name, dirname }) =>
-          `${name}: typeof import('./${dirname}/src/index.vue')['default']`,
-      )
-      .join('\n\t\t'),
   }
   const installFileContent = handlebars.compile(tpl, {
     noEscape: true,

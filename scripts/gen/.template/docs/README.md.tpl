@@ -1,8 +1,8 @@
 <script setup>
-import demo from './demo.vue'
-import demoRaw from './demo.vue?raw'
+import DocsDemo from './docs-demo.vue'
+import raw from './docs-demo.vue?raw'
 </script>
 
 # {{ desc }}
 
-<Preview :raw="demoRaw"><demo /></Preview>
+<preview-box :raw="raw"><docs-demo /></preview-box>

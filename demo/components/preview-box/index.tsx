@@ -6,7 +6,7 @@ import './index.scss'
 import './prism.css'
 
 export default defineComponent({
-  name: 'Preview',
+  name: 'PreviewBox',
   props: {
     raw: {
       type: String,
@@ -25,7 +25,7 @@ export default defineComponent({
     }
 
     return () => (
-      <div class="preview">
+      <div class="preview-box">
         <div class="handlers">
           <div class="handles__item" onClick={showSourceCode}>
             <Icon size="16">

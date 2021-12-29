@@ -61,7 +61,7 @@ componentName
  ├── tests # 测试文件
  │   └── example.spec.ts
  ├── docs # 文档
- │   ├── demo.vue # 使用示例
+ │   ├── docs-demo.vue # 使用示例
  │   └── README.md # 文档主文件（vue路由通过找docs/README.md渲染到页面）
- └── index.ts # 组件统一出口
+ └── index.ts # 出口
 ```

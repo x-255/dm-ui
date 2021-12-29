@@ -19,7 +19,7 @@ export default defineConfig({
         const _route = route
         if (_route.component.endsWith('README.md')) {
           const compRe = /\/src\/([a-z-]+)\/docs\/README\.md/
-          // eslint-disable-next-line no-unused-vars
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           const [_, name] = compRe.exec(_route.component)
           _route.name = name
           _route.path = `/components/${name}`
