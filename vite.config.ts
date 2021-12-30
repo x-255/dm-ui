@@ -1,5 +1,6 @@
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
+import { kebabCase } from 'lodash'
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import Markdown from 'vite-plugin-md'
@@ -18,9 +19,9 @@ export default defineConfig({
       extendRoute(route) {
         const _route = route
         if (_route.component.endsWith('README.md')) {
-          const compRe = /\/src\/([a-z-]+)\/docs\/README\.md/
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          const [_, name] = compRe.exec(_route.component)
+          const compRe = /\/src\/([A-Z][a-z-]+)\/docs\/README\.md/
+          let name = compRe.exec(_route.component)[1]
+          name = kebabCase(name)
           _route.name = name
           _route.path = `/components/${name}`
         }

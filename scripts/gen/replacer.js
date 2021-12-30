@@ -11,8 +11,8 @@ const getTplFilePath = ({ dirname }) => ({
     to: `../../src/${dirname}/docs/README.md`,
   },
   demo: {
-    from: './.template/docs/docs-demo.vue.tpl',
-    to: `../../src/${dirname}/docs/docs-demo.vue`,
+    from: './.template/docs/BaseDemo.vue.tpl',
+    to: `../../src/${dirname}/docs/BaseDemo.vue`,
   },
   // src 目录
   vue: {
@@ -78,9 +78,9 @@ const installTsTplReplacer = async (listFileContent) => {
 }
 
 // 使新建组件涉及到的文件的符合eslint规则
-const fixFiles = (name) => {
+const fixFiles = (dirname) => {
   execSync(
-    `eslint src/${name} src/components.ts --ext .vue,.js,.ts,.jsx,.tsx --fix`,
+    `eslint src/${dirname} src/components.ts --ext .vue,.js,.ts,.jsx,.tsx --fix`,
   )
 }
 

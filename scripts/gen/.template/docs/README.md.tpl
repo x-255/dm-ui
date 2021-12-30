@@ -1,8 +1,11 @@
 <script setup>
-import DocsDemo from './docs-demo.vue'
-import raw from './docs-demo.vue?raw'
+import BaseDemo from './BaseDemo.vue'
+import baseRaw from './BaseDemo.vue?raw'
 </script>
 
-# {{ desc }}
+# {{ zhName }} {{ dirname }}
+{{ desc }}
 
-<preview-box :raw="raw"><docs-demo /></preview-box>
+## 基础用法
+
+<preview-box :raw="raw"><base-demo /></preview-box>

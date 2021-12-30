@@ -12,6 +12,6 @@ export * from './src/index.vue'
 
 declare module 'vue' {
   export interface GlobalComponents {
-    {{ name }}: typeof import('./src/index.vue')['default']
+    {{ name }}: typeof _{{ name }}
   }
 }

@@ -17,6 +17,7 @@
 
 <script setup lang="ts">
 import { readonly } from 'vue'
+import { kebabCase } from 'lodash-es'
 import componentList from '@/list.json'
 
 let uid = 1
@@ -24,7 +25,7 @@ let uid = 1
 const navs = readonly(
   componentList.map((item) => ({
     id: uid++,
-    path: `/components/${item.dirname}`,
+    path: `/components/${kebabCase(item.dirname)}`,
     name: item.zhName,
   })),
 )

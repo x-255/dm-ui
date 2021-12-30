@@ -1,7 +1,5 @@
 import Prism from 'prismjs'
 import { defineComponent, onMounted, ref } from 'vue'
-import { UnfoldMoreFilled } from '@vicons/material'
-import { Icon } from '@vicons/utils'
 import './index.scss'
 import './prism.css'
 
@@ -28,9 +26,7 @@ export default defineComponent({
       <div class="preview-box">
         <div class="handlers">
           <div class="handles__item" onClick={showSourceCode}>
-            <Icon size="16">
-              <UnfoldMoreFilled />
-            </Icon>
+            <i class="fa fa-window-restore"></i>
           </div>
         </div>
         <section>{slots.default?.()}</section>
