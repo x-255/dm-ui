@@ -22,8 +22,13 @@ import componentList from '@/list.json'
 
 let uid = 1
 
+interface ComponentConfig {
+  dirname: string
+  zhName: string
+}
+
 const navs = readonly(
-  componentList.map((item) => ({
+  componentList.map((item: ComponentConfig) => ({
     id: uid++,
     path: `/components/${kebabCase(item.dirname)}`,
     name: item.zhName,

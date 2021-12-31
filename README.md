@@ -8,6 +8,10 @@
 
 [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) + [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 
+## 初始化
+
+`pnpm i`
+
 ## scripts
 
 ```sh
@@ -43,7 +47,7 @@ pnpm run lint:fix # 指示 ESLint 试图修复尽可能多的问题
  │   ├── list.json # 组件列表（组件库菜单就是根据这个生成的）
  │   ├── setup.ts # 全局安装所有组件的方法
  │   └── _utils # 各类工具
- ├── types # 全局类型声明
+ ├── typings # 全局类型声明
  │   ├── global.d.ts
  │   ├── shims-vue.d.ts
  │   └── vite-env.d.ts

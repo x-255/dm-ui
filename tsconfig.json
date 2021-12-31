@@ -19,7 +19,7 @@
     "types": ["vite-plugin-pages/client", "jest", "@vue/test-utils"]
   },
   "include": [
-    "types",
+    "typings",
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
