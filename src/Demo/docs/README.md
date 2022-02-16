@@ -3,8 +3,9 @@ import BaseDemo from './BaseDemo.vue'
 import baseRaw from './BaseDemo.vue?raw'
 </script>
 
-# {{ zhName }} {{ dirname }}
-{{ desc }}
+# DEMO Demo
+
+这是一个 DEMO 组件
 
 ## 基础用法
 

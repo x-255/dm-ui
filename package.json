@@ -63,6 +63,7 @@
     "vite-plugin-dts": "^0.9.6",
     "vite-plugin-pages": "^0.19.4",
     "vite-ssg": "^0.17.1",
+    "vue-eslint-parser": "^8.2.0",
     "vue-jest": "^5.0.0-alpha.10",
     "vue-tsc": "^0.29.8"
   }

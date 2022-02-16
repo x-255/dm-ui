@@ -1,1 +1,8 @@
-[]
+[
+  {
+    "name": "DmDemo",
+    "dirname": "Demo",
+    "zhName": "DEMO",
+    "desc": "这是一个DEMO组件"
+  }
+]
