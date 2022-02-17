@@ -5,5 +5,5 @@
 </template>
 
 <script setup lang="ts">
-import { DmDemo } from '..'
+import { DmDemo } from 'dm-ui'
 </script>

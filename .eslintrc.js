@@ -30,5 +30,6 @@ module.exports = {
   },
   rules: {
     'vue/script-setup-uses-vars': 2,
+    'vue/require-default-prop': 0,
   },
 }

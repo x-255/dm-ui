@@ -5,5 +5,5 @@
 </template>
 
 <script setup lang="ts">
-import { {{ name }} } from '..'
+import { {{ name }} } from 'dm-ui'
 </script>
